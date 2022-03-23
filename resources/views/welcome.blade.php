@@ -17,15 +17,16 @@
             <div>
                 <form autocomplete="off">
                     <input type="text" id="todo">
-                    <button id="add-new-todo">Create</button>
+                    <button id="add-todo-item">Create</button>
                 </form>
             </div>
             <div>
                 <ul>
                     @foreach ($todo as $item)
                      <li>
-                         {{-- <input id='todo-item-id' type="hidden" value="{{ $item->id }}"> --}}
-                         <span id="remove-todo-item" value="{{ $item->id }}">x</span> {!! $item->name !!} 
+                        {!! $item->name !!} 
+                        <span class="edit-todo-item" data-id="{{ $item->id }}">edit</span>
+                        <span class="remove-todo-item" data-id="{{ $item->id }}">x</span>
                     </li> 
                     @endforeach   
                 </ul>

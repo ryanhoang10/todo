@@ -30547,45 +30547,57 @@ var __webpack_exports__ = {};
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 $(document).ready(function () {
-  $('#add-new-todo').on('click', function () {
+  $.ajaxSetup({
+    method: 'post',
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+    error: function error(e) {
+      console.log(e);
+    }
+  });
+  $('#add-todo-item').on('click', function () {
     var todo = $('#todo').val();
     $.ajax({
       url: '/store',
-      method: 'post',
       data: {
         'todo': todo
       },
-      headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-      },
       success: function success(result) {
         location.reload();
-      },
-      error: function error(e) {
-        console.log(e);
       }
     });
   });
-  $('#remove-todo-item').on('click', function () {
-    var id = $(this).val();
-    console.log(id, " ,-- hello");
+  $('.remove-todo-item').on('click', function (event) {
+    var id = $('.remove-todo-item').attr('data-id'); // console.log(id2.event.target.innerHTML, " <-- here")
+
+    console.log(id, " <-- id");
+    return false;
     $.ajax({
       url: '/delete',
-      method: 'post',
       data: {
         'id': id
-      },
-      headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
       },
       success: function success(result) {
         console.log(id, " <== success");
         location.reload();
+      }
+    });
+  });
+  $('.edit-todo-item').on('click', function (event) {
+    // let id = $('.remove-todo-item').attr('data-id');
+    // let id2 = $('.todo-item-id').val();
+    // console.log(id2.event.target.innerHTML, " <-- here")
+    console.log('editing');
+    return false;
+    $.ajax({
+      url: '/delete',
+      data: {
+        'id': id
       },
-      error: function error(e) {
-        console.log(id, " <== fail");
-        console.log(e);
-        return false;
+      success: function success(result) {
+        console.log(id, " <== success");
+        location.reload();
       }
     });
   });
