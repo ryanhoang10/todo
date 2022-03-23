@@ -3,16 +3,6 @@ require('./bootstrap');
 $(document).ready(function() {
     $('.editing-todo-item, .update-todo-item, .cancel-todo-item').hide();
 
-    $.ajaxSetup({
-        method: 'post',
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-        error: function(e) {
-            console.log(e)
-        }
-    });
-
     $('#add-todo-item').on('click', function() {
         let todo = $('#todo').val();
         let createTodoObj = {
@@ -74,10 +64,17 @@ $(document).ready(function() {
     function ajaxTodoRequest(url, data)
     {
         $.ajax({
+            method: 'post',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
             url: url,
             data: data, 
             success: function(result) {
                 location.reload();
+            },
+            error: function(e) {
+                console.log(e)
             }
         });
     }

@@ -30548,15 +30548,6 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 $(document).ready(function () {
   $('.editing-todo-item, .update-todo-item, .cancel-todo-item').hide();
-  $.ajaxSetup({
-    method: 'post',
-    headers: {
-      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    },
-    error: function error(e) {
-      console.log(e);
-    }
-  });
   $('#add-todo-item').on('click', function () {
     var todo = $('#todo').val();
     var createTodoObj = {
@@ -30609,10 +30600,17 @@ $(document).ready(function () {
 
   function ajaxTodoRequest(url, data) {
     $.ajax({
+      method: 'post',
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
       url: url,
       data: data,
       success: function success(result) {
         location.reload();
+      },
+      error: function error(e) {
+        console.log(e);
       }
     });
   }
