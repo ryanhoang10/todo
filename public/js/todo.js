@@ -30544,7 +30544,8 @@ var __webpack_exports__ = {};
 /*!******************************!*\
   !*** ./resources/js/todo.js ***!
   \******************************/
-__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // test
+
 
 $(document).ready(function () {
   $('.editing-todo-item, .update-todo-item, .cancel-todo-item').hide();
