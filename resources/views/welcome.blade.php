@@ -1,41 +1,30 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <title>Todo</title>
-
-        <script src="{{ asset('js/todo.js') }}" ></script>
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    </head>
-    <body class="antialiased">
-        <div>
-            <div>
-                <form autocomplete="off">
-                    <input type="text" id="todo">
-                    <button id="add-todo-item">Create</button>
-                </form>
-            </div>
-            <div>
-                <ul>
-                    @foreach ($todo as $item)
-                    <div>
-                        <li>
-                            <span class="todo-item-{{ $item->id }}">{!! $item->name !!}</span>
-                            <input type="text" name="todo-item" class="editing-todo-item editing-{{ $item->id }}" value="{{ $item->name }}">
-                            <span class="edit-todo-item edit-{{ $item->id }}" data-id="{{ $item->id }}" data-item="{{ $item->name }}">edit</span>
-                            <span class="update-todo-item update-{{ $item->id }}">update</span>
-                            <span class="cancel-todo-item cancel-{{ $item->id }}">cancel</span>
-                            <span class="remove-todo-item remove-{{ $item->id }}" data-id="{{ $item->id }}">x</span>
-                        </li>   
+<div class="">
+    <div class="mb-4">
+        <form autocomplete="off">
+            <input type="text" id="todo" class="shadow appearance-none border rounded py-1 px-2 text-gray-700">
+            <button id="add-todo-item" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded">Create</button>
+        </form>
+    </div>
+    <div>
+        <ul>
+            @foreach ($todo as $item)
+            <div class="appearance-none border rounded">
+                <li class="pt-4 pb-8 px-6">
+                    <input type="checkbox" class=" float-left mt-1 mr-2 todo-item-done-{{ $item->id }}" name="todo-item-done">
+                    <span class="todo-item-{{ $item->id }} float-left">{!! $item->name !!}</span>
+                    <input type="text" name="todo-item" class="float-left shadow appearance-none border px-1 rounded editing-todo-item editing-{{ $item->id }}" value="{{ $item->name }}">
+                    <div class="float-right">
+                        <span class="cursor-pointer bg-green-500 hover:bg-green-700 text-white py-1 px-3 rounded edit-todo-item edit-{{ $item->id }}" data-id="{{ $item->id }}" data-item="{{ $item->name }}">Edit</span>
+                        <span class="cursor-pointer bg-green-500 hover:bg-green-700 text-white py-1 px-3 rounded update-todo-item update-{{ $item->id }}">update</span>
+                        <span class="cursor-pointer bg-red-500 hover:bg-red-700 text-white py-1 px-3 rounded cancel-todo-item cancel-{{ $item->id }}">cancel</span>
+                        <span class="cursor-pointer bg-red-500 hover:bg-red-700 text-white py-1 px-3 rounded remove-todo-item remove-{{ $item->id }}" data-id="{{ $item->id }}">Remove</span> 
                     </div>
-                    @endforeach   
-                </ul>
-               
+                    
+                </li>   
             </div>
-        </div>
-    </body>
-</html>
+            @endforeach   
+        </ul>
+        
+    </div>
+</div>
+
