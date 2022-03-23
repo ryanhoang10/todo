@@ -30569,10 +30569,7 @@ $(document).ready(function () {
     });
   });
   $('.remove-todo-item').on('click', function (event) {
-    var id = $('.remove-todo-item').attr('data-id'); // console.log(id2.event.target.innerHTML, " <-- here")
-
-    console.log(id, " <-- id");
-    return false;
+    var id = $(this).attr('data-id');
     $.ajax({
       url: '/delete',
       data: {
@@ -30585,9 +30582,7 @@ $(document).ready(function () {
     });
   });
   $('.edit-todo-item').on('click', function (event) {
-    // let id = $('.remove-todo-item').attr('data-id');
-    // let id2 = $('.todo-item-id').val();
-    // console.log(id2.event.target.innerHTML, " <-- here")
+    var id = $(this).attr('data-id');
     console.log('editing');
     return false;
     $.ajax({

@@ -25,13 +25,8 @@ $(document).ready(function() {
     });
 
     $('.remove-todo-item').on('click', function(event) {
-        let id = $('.remove-todo-item').attr('data-id');
+        let id = $(this).attr('data-id');
 
-        // console.log(id2.event.target.innerHTML, " <-- here")
-
-        console.log(id, " <-- id")
-
-        return false;
         $.ajax({
             url: '/delete',
             data: {
@@ -45,10 +40,8 @@ $(document).ready(function() {
     });   
 
     $('.edit-todo-item').on('click', function(event) {
-        // let id = $('.remove-todo-item').attr('data-id');
-        // let id2 = $('.todo-item-id').val();
+        let id = $(this).attr('data-id');
 
-        // console.log(id2.event.target.innerHTML, " <-- here")
 
         console.log('editing')
 
