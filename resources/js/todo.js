@@ -1,6 +1,8 @@
 require('./bootstrap');
 
 $(document).ready(function() {
+    $('.editing-todo-item, .update-todo-item, .cancel-todo-item').hide();
+
     $.ajaxSetup({
         method: 'post',
         headers: {
@@ -41,20 +43,47 @@ $(document).ready(function() {
 
     $('.edit-todo-item').on('click', function(event) {
         let id = $(this).attr('data-id');
+        let todoItem = $(this).attr('data-item');
+        // hiding buttons
+        $('.todo-item-' + todoItem).hide();
+        $('.edit-' + id).hide();
+        $('.remove-' + id).hide();
+
+        // showing buttons
+        $('.editing-' + id).show();
+        $('.cancel-' + id).show();
+        $('.update-' + id).show();
 
 
-        console.log('editing')
+        // hitting cancel button returns back to span + edit button
+        $('.cancel-' + id).on('click', function() {
+            console.log('hit')
+            // showing buttons
+            $('.todo-item-' + todoItem).show();
+            $('.edit-' + id).show();
+            $('.remove-' + id).show();
 
-        return false;
-        $.ajax({
-            url: '/delete',
-            data: {
-                'id': id,
-            }, 
-            success: function(result) {
-                console.log(id, " <== success")
-                location.reload();
-            }
-        });
+            // hiding buttons
+            $('.editing-' + id).hide();
+            $('.cancel-' + id).hide();
+            $('.update-' + id).hide();
+        })
+
+        // hitting update button hits ajax to update todo item in db
+        $('.update-' + id).on('click', function() {
+            let editTodoItem = $('.editing-' + id).val();
+            console.log(editTodoItem)
+
+            $.ajax({
+                url: '/edit',
+                data: {
+                    'id': id,
+                    'todo': editTodoItem,
+                }, 
+                success: function(result) {
+                    location.reload();
+                }
+            });
+        })
     });   
 });

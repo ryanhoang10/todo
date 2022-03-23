@@ -29,14 +29,13 @@ class HomeController extends BaseController
 
     public function delete(Request $request)
     {
-        $todo = Todo::where('id', $request->get('id'));
-        $todo->delete();
+        $todo = Todo::where('id', $request->get('id'))
+                    ->delete();
     }
 
     public function edit(Request $request)
     {
-        $todo = Todo::where('id', $request->get('id'));
-        $todo->name = $request->get('todo');
-        $todo->save();
+        $todo = Todo::where('id', $request->id)
+                    ->update(['name' => $request->todo]);
     }
 }
