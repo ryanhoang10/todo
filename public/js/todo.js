@@ -30571,29 +30571,40 @@ $(document).ready(function () {
     };
     ajaxTodoRequest('/delete', deleteTodoObj);
   });
-  $('.edit-todo-item').on('click', function (event) {
-    var id = $(this).attr('data-id');
-    var todoItem = $(this).attr('data-item'); // hiding buttons
 
-    $('.todo-item-' + todoItem).hide();
+  function hideTodoButtons(id) {
+    $('.todo-item-' + id).hide();
     $('.edit-' + id).hide();
-    $('.remove-' + id).hide(); // showing buttons
+    $('.remove-' + id).hide();
+    showEditTodoButton(id);
+  }
 
+  function showTodoButtons(id) {
+    $('.todo-item-' + id).show();
+    $('.edit-' + id).show();
+    $('.remove-' + id).show();
+    hideEditTodoButton(id);
+  }
+
+  function showEditTodoButton(id) {
     $('.editing-' + id).show();
     $('.cancel-' + id).show();
-    $('.update-' + id).show(); // hitting cancel button returns back to span + edit button
+    $('.update-' + id).show();
+  }
 
+  function hideEditTodoButton(id) {
+    $('.editing-' + id).hide();
+    $('.cancel-' + id).hide();
+    $('.update-' + id).hide();
+  }
+
+  $('.edit-todo-item').on('click', function (event) {
+    var id = $(this).attr('data-id');
+    var todoItem = $(this).attr('data-item');
+    hideTodoButtons(id, todoItem);
     $('.cancel-' + id).on('click', function () {
-      // showing buttons
-      $('.todo-item-' + todoItem).show();
-      $('.edit-' + id).show();
-      $('.remove-' + id).show(); // hiding buttons
-
-      $('.editing-' + id).hide();
-      $('.cancel-' + id).hide();
-      $('.update-' + id).hide();
-    }); // hitting update button hits ajax to update todo item in db
-
+      showTodoButtons(id, todoItem);
+    });
     $('.update-' + id).on('click', function () {
       var editTodoItem = $('.editing-' + id).val();
       var editTodoObj = {

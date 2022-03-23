@@ -25,7 +25,7 @@
                     @foreach ($todo as $item)
                     <div>
                         <li>
-                            <span class="todo-item-{{ $item->name }}">{!! $item->name !!}</span>
+                            <span class="todo-item-{{ $item->id }}">{!! $item->name !!}</span>
                             <input type="text" name="todo-item" class="editing-todo-item editing-{{ $item->id }}" value="{{ $item->name }}">
                             <span class="edit-todo-item edit-{{ $item->id }}" data-id="{{ $item->id }}" data-item="{{ $item->name }}">edit</span>
                             <span class="update-todo-item update-{{ $item->id }}">update</span>
