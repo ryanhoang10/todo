@@ -34,9 +34,10 @@ $(document).ready(function() {
         $('.todo-item-' + id).hide();
         $('.edit-' + id).hide();
         $('.remove-' + id).hide();
-        
-        showEditTodoButton(id);
 
+        $('.editing-' + id).show();
+        $('.cancel-' + id).show();
+        $('.update-' + id).show();
     }
 
     function showTodoButtons(id)
@@ -45,21 +46,9 @@ $(document).ready(function() {
         $('.edit-' + id).show();
         $('.remove-' + id).show();
 
-        hideEditTodoButton(id);
-    }
-
-    function showEditTodoButton(id)
-    {
-        $('.editing-' + id).show();
-        $('.cancel-' + id).show();
-        $('.update-' + id).show();
-    }
-
-    function hideEditTodoButton(id)
-    {
         $('.editing-' + id).hide();
         $('.cancel-' + id).hide();
-        $('.update-' + id).hide();
+        $('.update-' + id).hide();    
     }
 
     $('.edit-todo-item').on('click', function(event) {
