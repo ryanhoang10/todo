@@ -22,16 +22,21 @@ class HomeController extends BaseController
 
     public function store(Request $request)
     {
-        dd($request);
+        $todo = new Todo;
+        $todo->name = $request->get('todo');
+        $todo->save();
     }
 
     public function destroy(Request $request)
     {
-
+        $todo = Todo::where('id', $request->get('id'));
+        $todo->delete();
     }
 
     public function edit(Request $request)
     {
-
+        $todo = Todo::where('id', $request->get('id'));
+        $todo->name = $request->get('todo');
+        $todo->save();
     }
 }
