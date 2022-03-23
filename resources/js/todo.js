@@ -1,5 +1,4 @@
 require('./bootstrap');
-// test
 $(document).ready(function() {
     $('.editing-todo-item, .update-todo-item, .cancel-todo-item').hide();
 
