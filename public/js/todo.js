@@ -30559,28 +30559,17 @@ $(document).ready(function () {
   });
   $('#add-todo-item').on('click', function () {
     var todo = $('#todo').val();
-    $.ajax({
-      url: '/store',
-      data: {
-        'todo': todo
-      },
-      success: function success(result) {
-        location.reload();
-      }
-    });
+    var createTodoObj = {
+      'todo': todo
+    };
+    ajaxTodoRequest('/store', createTodoObj);
   });
   $('.remove-todo-item').on('click', function (event) {
     var id = $(this).attr('data-id');
-    $.ajax({
-      url: '/delete',
-      data: {
-        'id': id
-      },
-      success: function success(result) {
-        console.log(id, " <== success");
-        location.reload();
-      }
-    });
+    var deleteTodoObj = {
+      'id': id
+    };
+    ajaxTodoRequest('/delete', deleteTodoObj);
   });
   $('.edit-todo-item').on('click', function (event) {
     var id = $(this).attr('data-id');
@@ -30595,8 +30584,7 @@ $(document).ready(function () {
     $('.update-' + id).show(); // hitting cancel button returns back to span + edit button
 
     $('.cancel-' + id).on('click', function () {
-      console.log('hit'); // showing buttons
-
+      // showing buttons
       $('.todo-item-' + todoItem).show();
       $('.edit-' + id).show();
       $('.remove-' + id).show(); // hiding buttons
@@ -30608,19 +30596,23 @@ $(document).ready(function () {
 
     $('.update-' + id).on('click', function () {
       var editTodoItem = $('.editing-' + id).val();
-      console.log(editTodoItem);
-      $.ajax({
-        url: '/edit',
-        data: {
-          'id': id,
-          'todo': editTodoItem
-        },
-        success: function success(result) {
-          location.reload();
-        }
-      });
+      var editTodoObj = {
+        'id': id,
+        'todo': editTodoItem
+      };
+      ajaxTodoRequest('/edit', editTodoObj);
     });
   });
+
+  function ajaxTodoRequest(url, data) {
+    $.ajax({
+      url: url,
+      data: data,
+      success: function success(result) {
+        location.reload();
+      }
+    });
+  }
 });
 })();
 

@@ -15,30 +15,18 @@ $(document).ready(function() {
 
     $('#add-todo-item').on('click', function() {
         let todo = $('#todo').val();
-        $.ajax({
-            url: '/store',
-            data: {
-                'todo' : todo,
-            },
-            success: function(result) {
-                location.reload();
-            }
-        });
+        let createTodoObj = {
+            'todo': todo,
+        };
+        ajaxTodoRequest('/store', createTodoObj);
     });
 
     $('.remove-todo-item').on('click', function(event) {
         let id = $(this).attr('data-id');
-
-        $.ajax({
-            url: '/delete',
-            data: {
-                'id': id,
-            }, 
-            success: function(result) {
-                console.log(id, " <== success")
-                location.reload();
-            }
-        });
+        let deleteTodoObj = {
+            'id': id,
+        };
+        ajaxTodoRequest('/delete', deleteTodoObj);
     });   
 
     $('.edit-todo-item').on('click', function(event) {
@@ -57,7 +45,6 @@ $(document).ready(function() {
 
         // hitting cancel button returns back to span + edit button
         $('.cancel-' + id).on('click', function() {
-            console.log('hit')
             // showing buttons
             $('.todo-item-' + todoItem).show();
             $('.edit-' + id).show();
@@ -72,18 +59,22 @@ $(document).ready(function() {
         // hitting update button hits ajax to update todo item in db
         $('.update-' + id).on('click', function() {
             let editTodoItem = $('.editing-' + id).val();
-            console.log(editTodoItem)
-
-            $.ajax({
-                url: '/edit',
-                data: {
-                    'id': id,
-                    'todo': editTodoItem,
-                }, 
-                success: function(result) {
-                    location.reload();
-                }
-            });
+            let editTodoObj = {
+                'id': id,
+                'todo': editTodoItem,
+            };
+            ajaxTodoRequest('/edit', editTodoObj);
         })
     });   
+
+    function ajaxTodoRequest(url, data)
+    {
+        $.ajax({
+            url: url,
+            data: data, 
+            success: function(result) {
+                location.reload();
+            }
+        });
+    }
 });
