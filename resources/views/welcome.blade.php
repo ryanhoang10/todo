@@ -6,20 +6,27 @@
 
         <title>Todo</title>
 
+        <script src="{{ asset('js/todo.js') }}" ></script>
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 
     </head>
     <body class="antialiased">
         <div>
             <h2 class="cursor-pointer">To Do List: </h2>
             <div>
-                <input type="text" />
-                <button> Create </button>
+                <form autocomplete="off">
+                    <input type="text" id="todo">
+                    <button id="add-new-todo">Create</button>
+                </form>
             </div>
             <div>
                 <ul>
                     @foreach ($todo as $item)
-                     <li>{!! $item->name !!}</li>
+                     <li>
+                         {{-- <input id='todo-item-id' type="hidden" value="{{ $item->id }}"> --}}
+                         <span id="remove-todo-item" value="{{ $item->id }}">x</span> {!! $item->name !!} 
+                    </li> 
                     @endforeach   
                 </ul>
                

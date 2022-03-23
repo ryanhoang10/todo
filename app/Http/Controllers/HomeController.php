@@ -27,7 +27,7 @@ class HomeController extends BaseController
         $todo->save();
     }
 
-    public function destroy(Request $request)
+    public function delete(Request $request)
     {
         $todo = Todo::where('id', $request->get('id'));
         $todo->delete();
