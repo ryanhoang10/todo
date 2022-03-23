@@ -13,7 +13,6 @@
     </head>
     <body class="antialiased">
         <div>
-            <h2 class="cursor-pointer">To Do List: </h2>
             <div>
                 <form autocomplete="off">
                     <input type="text" id="todo">

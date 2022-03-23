@@ -17,7 +17,7 @@ class HomeController extends BaseController
     {
         $todo = Todo::get();
 
-        return view('welcome', compact('todo'));
+        return view('templates.header.header', compact('todo'));
     }
 
     public function store(Request $request)
