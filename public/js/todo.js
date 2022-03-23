@@ -30597,6 +30597,9 @@ $(document).ready(function () {
       ajaxTodoRequest('/edit', editTodoObj);
     });
   });
+  $('#remove-all-todo-items').on('click', function () {
+    ajaxTodoRequest('/deleteAll', {});
+  });
 
   function ajaxTodoRequest(url, data) {
     $.ajax({

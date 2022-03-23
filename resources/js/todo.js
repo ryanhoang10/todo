@@ -60,6 +60,10 @@ $(document).ready(function() {
         })
     });   
 
+    $('#remove-all-todo-items').on('click', function() {
+        ajaxTodoRequest('/deleteAll', {})
+    })
+
     function ajaxTodoRequest(url, data)
     {
         $.ajax({

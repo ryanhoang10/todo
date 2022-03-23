@@ -2,7 +2,7 @@
     <div class="mb-4">
         <form autocomplete="off">
             <input type="text" id="todo" class="shadow appearance-none border rounded py-1 px-2 text-gray-700">
-            <button id="add-todo-item" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded">Create</button>
+            <button id="add-todo-item" class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-1 px-3 rounded">Create</button>
         </form>
     </div>
     <div>
@@ -20,11 +20,11 @@
                         <span class="cursor-pointer bg-red-500 hover:bg-red-700 text-white py-1 px-3 rounded remove-todo-item remove-{{ $item->id }}" data-id="{{ $item->id }}">Remove</span> 
                     </div>
                     
-                </li>   
+                </li>
             </div>
             @endforeach   
         </ul>
-        
+        <button class="mt-3 bg-purple-500 hover:bg-purple-700 text-white py-2 px-4 rounded" id="remove-all-todo-items">Remove All</button>   
     </div>
 </div>
 

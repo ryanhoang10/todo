@@ -38,4 +38,9 @@ class HomeController extends BaseController
         $todo = Todo::where('id', $request->id)
                     ->update(['name' => $request->todo]);
     }
+
+    public function deleteAll()
+    {
+        Todo::truncate();
+    }
 }

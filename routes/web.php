@@ -7,3 +7,4 @@ Route::get('/', [HomeController::class, 'index']);
 Route::post('/store', [HomeController::class, 'store'])->name('store.todo');
 Route::post('/edit', [HomeController::class, 'edit'])->name('edit.todo');
 Route::post('/delete', [HomeController::class, 'delete'])->name('delete.todo');
+Route::post('/deleteAll', [HomeController::class, 'deleteAll'])->name('delete.all.todo');
