@@ -8,6 +8,8 @@
 
         <script src="{{ asset('js/todo.js') }}" ></script>
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/todo.css') }}" rel="stylesheet">
+
         {{-- <link rel="stylesheet" href="{{ tailwindcss('css/app.css') }}" > --}}
 
         <meta name="csrf-token" content="{{ csrf_token() }}">

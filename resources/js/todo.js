@@ -64,6 +64,15 @@ $(document).ready(function() {
         ajaxTodoRequest('/deleteAll', {})
     })
 
+    $('.todo-item-done').on('click', function() {
+        let id = $(this).val();
+        if($('.todo-item-done').is(':checked')) {
+            $('.todo-item-' + id).addClass('strike');
+        } else {
+            $('.todo-item-' + id).removeClass('strike');
+        }
+    })
+
     function ajaxTodoRequest(url, data)
     {
         $.ajax({

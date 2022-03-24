@@ -1,3 +1,11 @@
+{{-- @section('styles')
+    <style type="text/css">
+        .strike {
+            text-decoration: line-through;
+        }  
+    </style>
+@stop --}}
+
 <div class="">
     <div class="mb-4">
         <form autocomplete="off">
@@ -10,7 +18,7 @@
             @foreach ($todo as $item)
             <div class="appearance-none border rounded">
                 <li class="pt-4 pb-8 px-6">
-                    <input type="checkbox" class=" float-left mt-1 mr-2 todo-item-done-{{ $item->id }}" name="todo-item-done">
+                    <input type="checkbox" class="float-left mt-1 mr-2 todo-item-done" value="{{ $item->id }}" name="todo-item-done">
                     <span class="todo-item-{{ $item->id }} float-left">{!! $item->name !!}</span>
                     <input type="text" name="todo-item" class="float-left shadow appearance-none border px-1 rounded editing-todo-item editing-{{ $item->id }}" value="{{ $item->name }}">
                     <div class="float-right">

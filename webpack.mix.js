@@ -17,3 +17,4 @@ mix.js('resources/js/app.js', 'public/js')
     ]);
 
 mix.js('resources/js/todo.js', 'public/js');
+mix.postCss('resources/css/todo.css', 'public/css');
